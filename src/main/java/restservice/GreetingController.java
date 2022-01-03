@@ -1,4 +1,4 @@
-package com.example.restservice;
+package restservice;
 
 import java.util.concurrent.atomic.AtomicLong;
 
