@@ -1,5 +1,22 @@
 {
   "dependencies": {
-    "gatsby": "^4.4.0"
-  }
+  },
+  "name": "spring-project",
+  "version": "1.0.0",
+  "description": "Source code for news and twitter sentiment analysis site",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blithersoup/spring-project.git"
+  },
+  "author": "Grady Arnold",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blithersoup/spring-project/issues"
+  },
+  "homepage": "https://github.com/blithersoup/spring-project#readme"
 }

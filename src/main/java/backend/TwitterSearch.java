@@ -1,0 +1,52 @@
+package backend;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.simple.JSONObject;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+
+import static backend.NewsResult.getJsonObject;
+import static java.lang.Character.isUpperCase;
+
+
+public class TwitterSearch {
+    private String searchString = "";
+    private final String bearerToken;
+    private String[] searchTerms;
+
+    public TwitterSearch(String searchString, String bearerToken) {
+        this.searchTerms = searchString.split("\\s+");
+        this.bearerToken = bearerToken;
+        this.searchString = searchString;
+        
+        for (int i = 0; i < searchTerms.length; i++) {
+            if (isUpperCase(searchTerms[i].charAt(0))) searchString += searchTerms[i] + " OR ";
+        }
+    }
+
+    public JSONObject getSearchResponse(HttpClient httpClient) throws IOException, URISyntaxException {
+        JSONObject searchResult = new JSONObject();
+
+        URIBuilder uriBuilder = new URIBuilder("https://api.twitter.com/2/tweets/search/recent");
+        ArrayList<NameValuePair> queryParameters;
+        queryParameters = new ArrayList<>();
+        queryParameters.add(new BasicNameValuePair("query", searchString));
+        queryParameters.add(new BasicNameValuePair("max_results", "25"));
+        queryParameters.add(new BasicNameValuePair("sort_order", "relevancy"));
+
+        uriBuilder.addParameters(queryParameters);
+
+        HttpGet httpGet = new HttpGet(uriBuilder.build());
+        httpGet.setHeader("Authorization", String.format("Bearer %s", bearerToken)); //Add env variable
+        httpGet.setHeader("Content-Type", "application/json");
+
+        return getJsonObject(httpClient, searchResult, httpGet);
+    }
+
+}
