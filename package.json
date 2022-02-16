@@ -1,13 +1,19 @@
 {
   "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rest": "^2.0.0"
   },
   "name": "spring-project",
   "version": "1.0.0",
   "description": "Source code for news and twitter sentiment analysis site",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo Building frontend",
+    "check": "echo Checking frontend && npm run lint && npm run test",
+    "clean": "echo Cleaning frontend",
+    "lint": "echo Linting frontend",
+    "test": "echo Testing frontend"
   },
   "repository": {
     "type": "git",
