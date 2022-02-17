@@ -8,17 +8,16 @@ class App extends React.Component {
         super(props);
         this.state = {stuff: []}
     }
-
     componentDidMount() {
-
-        client({method: 'GET', path: '/twitter/search'}).done(response => {
-            this.setState({stuff: response})
-        });
+        let x = 5;
+        x += 1;
     }
 
     render() {
         return (
-            <OutputTest ouput = OutputTest/>
+            <div>
+                hello world
+            </div>
         )
     }
 }
@@ -38,4 +37,3 @@ ReactDOM.render(
     <App />,
     document.getElementById('react')
 )
-// end::render[]

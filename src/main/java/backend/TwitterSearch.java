@@ -23,11 +23,15 @@ public class TwitterSearch {
     public TwitterSearch(String searchString, String bearerToken) {
         this.searchTerms = searchString.split("\\s+");
         this.bearerToken = bearerToken;
-        this.searchString = searchString;
-        
-        for (int i = 0; i < searchTerms.length; i++) {
-            if (isUpperCase(searchTerms[i].charAt(0))) searchString += searchTerms[i] + " OR ";
+        StringBuilder searchStringBuilder = new StringBuilder(searchString);
+        for (String searchTerm : searchTerms) {
+            if (isUpperCase(searchTerm.charAt(0))) searchStringBuilder.append(searchTerm).append(" OR ");
         }
+        searchString = searchStringBuilder.toString();
+        if (searchString.length() > 510) {
+            searchString = searchString.substring(0,510);
+        }
+        this.searchString = searchString;
     }
 
     public JSONObject getSearchResponse(HttpClient httpClient) throws IOException, URISyntaxException {

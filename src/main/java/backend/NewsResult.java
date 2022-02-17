@@ -30,11 +30,13 @@ public class NewsResult {
     public JSONObject getSearchResponse(HttpClient httpClient) throws IOException, URISyntaxException {
         JSONObject searchResult = new JSONObject();
 
-        URIBuilder uriBuilder = new URIBuilder("https://newsapi.org/v2/top-headlines");
+        URIBuilder uriBuilder = new URIBuilder("https://newsapi.org/v2/everything");
         ArrayList<NameValuePair> queryParameters;
         queryParameters = new ArrayList<>();
-        queryParameters.add(new BasicNameValuePair("country", "us"));
         queryParameters.add(new BasicNameValuePair("q", query));
+        queryParameters.add(new BasicNameValuePair("language", "en"));
+        queryParameters.add(new BasicNameValuePair("sortBy", "relevancy"));
+        queryParameters.add(new BasicNameValuePair("pageSize", "10"));
         queryParameters.add(new BasicNameValuePair("apiKey", apiKey));
         uriBuilder.addParameters(queryParameters);
 
