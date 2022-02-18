@@ -2,37 +2,58 @@ plugins {
 	id 'org.springframework.boot' version '2.5.8'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id 'org.siouan.frontend-jdk11' version '6.0.0'
+	id "com.github.node-gradle.node" version "3.1.1"
 }
-frontend {
-	nodeVersion = '14.17.3'
-	assembleScript = 'run build'
-	cleanScript = 'run clean'
-	checkScript = 'run check'
-}
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.6.3'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	implementation 'javax.inject:javax.inject:1'
-	implementation 'com.peterphi.thymeleaf:thymeleaf:3.0.12.1'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.3'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
 	implementation 'org.json:json:20211205'
-	implementation 'org.springframework.social:spring-social-twitter'
-	implementation 'org.springframework.social:spring-social-core'
-	implementation 'org.springframework.social:spring-social-web'
 	implementation 'org.apache.httpcomponents:httpcore:4.4.15'
 	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.6.3'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+task appNpmInstall(type: NpmTask) {
+	description = "Installs all dependencies from package.json"
+	workingDir = file("${project.projectDir}/src/main/js/frontend")
+	args = ["install"]
+}
+
+task appNpmBuild(type: NpmTask) {
+	description = "Builds production version of the webapp"
+	workingDir = file("${project.projectDir}/src/main/js/frontend")
+	args = ["run", "build"]
+}
+
+task copyWebApp(type: Copy) {
+	from 'src/main/js/frontend/build'
+	into 'build/resources/main/static/.'
+}
+
+appNpmBuild.dependsOn appNpmInstall
+copyWebApp.dependsOn appNpmBuild
+compileJava.dependsOn copyWebApp
+
+node {
+	download = true
+
+	// Set the work directory for unpacking node
+	workDir = file("${project.buildDir}/nodejs")
+
+	// Set the work directory for NPM
+	npmWorkDir = file("${project.buildDir}/npm")
 }

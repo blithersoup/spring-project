@@ -7,7 +7,6 @@
   "name": "spring-project",
   "version": "1.0.0",
   "description": "Source code for news and twitter sentiment analysis site",
-  "main": "index.js",
   "scripts": {
     "build": "echo Building frontend",
     "check": "echo Checking frontend && npm run lint && npm run test",
