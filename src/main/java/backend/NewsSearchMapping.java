@@ -24,7 +24,7 @@ public class NewsSearchMapping {
     HttpClient client = new ServerHttpClient().httpClient;
 
     @GetMapping("/news/search")
-    public JSONObject NewsSearchMapping(@RequestParam(value = "query") String query) throws IOException, URISyntaxException {
+    public JSONObject NewsMapping(@RequestParam(value = "query") String query) throws IOException, URISyntaxException {
         NewsResult search = new NewsResult(query, apiKey);
         return search.getSearchResponse(client);
     }
