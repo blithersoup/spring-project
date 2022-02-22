@@ -41,7 +41,7 @@ task appNpmBuild(type: NpmTask) {
 
 task copyWebApp(type: Copy) {
 	from 'src/main/js/frontend/build'
-	into 'build/resources/main/static/.'
+	into 'build/resources/main/.'
 }
 
 appNpmBuild.dependsOn appNpmInstall
