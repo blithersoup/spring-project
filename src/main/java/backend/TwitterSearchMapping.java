@@ -16,7 +16,7 @@ public class TwitterSearchMapping {
     HttpClient client = new ServerHttpClient().httpClient;
 
     @GetMapping("/twitter/search")
-    public JSONObject TwitterSearchMapping(@RequestParam(value = "query", defaultValue = "default") String query) throws IOException, URISyntaxException {
+    public JSONObject TwitterSearch(@RequestParam(value = "query", defaultValue = "default") String query) throws IOException, URISyntaxException {
         TwitterSearch search = new TwitterSearch(query, BearerToken);
         return search.getSearchResponse(client);
     }
