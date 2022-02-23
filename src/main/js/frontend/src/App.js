@@ -1,13 +1,21 @@
-import logo from "./logo.svg";
-import "./App.css";
+import './App.css';
+import { Input, Icon, Button, Container, Text } from "atomize";
+import SearchBar from './SearchBar';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>About</div>
-      </header>
-    </div>
+      <>
+        <Container>
+          <Text tag="h1" textSize="display1" m={{ b: "4rem" }}>
+            Sample title
+          </Text>
+        </Container>
+        <Container pos="fixed" top="50%">
+            <SearchBar />
+        </Container>
+      </>
+    
   );
 }
 
