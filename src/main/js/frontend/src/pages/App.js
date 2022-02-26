@@ -1,17 +1,10 @@
 import "../App.css";
 import { Flex, Box, Link, Spacer } from "@chakra-ui/react";
-
+import PageHeader from "./PageHeader"
 function App() {
   return (
     <Flex direction="column" height="100vh">
-      <Flex direction="row">
-        <Spacer />
-        <Box o="2">Twitter search</Box>
-        <Spacer />
-        <Link href="/about" mr="4">
-          About
-        </Link>
-      </Flex>
+      <PageHeader />
       <Spacer />
       <Flex direction="row" as="form">
         <Box
