@@ -3,36 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
-import { Client as Styletron } from "styletron-engine-atomic";
-import { ThemeProvider, StyleReset } from 'atomize';
-
-const debug =
-  process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
-
-// 1. Create a client engine instance
-const engine = new Styletron();
-
-// 2. Provide the engine to the app
-// debug engine needs inlined source maps
-
-const theme = {
-  colors: {
-    primary: 'tomato',
-    accent: 'yellow',
+import { extendTheme, ChakraProvider } from '@chakra-ui/react';
+//@chakra=ui/theme-tools
+//@chakra-ui/icons for icons
+//react-icons
+const colors = {
+  brand: {
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
   },
-};
+}
 
+const theme = extendTheme({ colors })
 
 ReactDOM.render(
-  <React.StrictMode>
-    <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-      <ThemeProvider theme={theme}>
-        <StyleReset />
-        <App />
-    </ThemeProvider>
-    </StyletronProvider>
-  </React.StrictMode>,
+  <ChakraProvider theme={theme}>
+    <App />
+  </ChakraProvider>,
   document.getElementById('root')
 );
 
