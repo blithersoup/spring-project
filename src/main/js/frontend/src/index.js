@@ -5,7 +5,7 @@ import App from "./pages/App";
 import reportWebVitals from "./reportWebVitals";
 import { extendTheme, ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import StackEx from "./pages/Results.js";
+import Results from "./pages/Results.js";
 import Feature from "./pages/Try.js";
 //@chakra=ui/theme-tools
 //@chakra-ui/icons for icons
@@ -26,6 +26,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}></Route>
         <Route path="/about" element={<Feature />}></Route>
+        <Route path="/results" element={<Results />}></Route>
       </Routes>
     </BrowserRouter>
   </ChakraProvider>,

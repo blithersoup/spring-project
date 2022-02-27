@@ -9,7 +9,7 @@ function Feature({ title, desc, ...rest }) {
   );
 }
 
-function StackEx() {
+function Results() {
   return (
     <Stack spacing={8}>
       <Feature
@@ -24,4 +24,4 @@ function StackEx() {
   );
 }
 
-export default StackEx;
+export default Results;
