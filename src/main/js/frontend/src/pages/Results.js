@@ -1,26 +1,42 @@
 import { Box, Stack, Heading, Text } from "@chakra-ui/react";
+import PageHeader from "./PageHeader";
 
-function Feature({ title, desc, ...rest }) {
+function Feature({ title, desc }) {
   return (
-    <Box p={5} shadow="md" borderWidth="1px" {...rest}>
+    <Box p={5} shadow="md" borderWidth="1px">
       <Heading fontSize="xl">{title}</Heading>
       <Text mt={4}>{desc}</Text>
     </Box>
   );
 }
 
-function Results() {
+function Results({ result }) {
+  const url = "http://localhost:3000/news/search?query=ukraine";
+  /*let ret = (
+    <>
+      <PageHeader />
+      <Stack spacing={8}>
+        {body.articles.map((item) => (
+          <Feature title={item.title} desc={item.url} />
+        ))}
+      </Stack>
+    </>
+  );*/
+  //let options = { params: { query: result } };
+
+  fetch(url)
+    .then((response) => {
+      const body = response.json();
+    })
+    .then(console.log(body))
+    .catch((error) => {
+      console.log(error);
+    });
+
   return (
-    <Stack spacing={8}>
-      <Feature
-        title="Plan Money"
-        desc="The future can be even brighter but a goal without a plan is just a wish"
-      />
-      <Feature
-        title="Save Money"
-        desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings on your own terms with our completely automated process"
-      />
-    </Stack>
+    <>
+      <div>hello</div>
+    </>
   );
 }
 

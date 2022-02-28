@@ -17,7 +17,20 @@ const colors = {
     700: "#2a69ac",
   },
 };
-
+/*
+const res = {
+  items: [
+    {
+      title: "hello",
+      text: "world",
+    },
+    {
+      title: "hello1",
+      text: "world1",
+    },
+  ],
+};
+*/
 const theme = extendTheme({ colors });
 
 ReactDOM.render(
@@ -26,7 +39,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}></Route>
         <Route path="/about" element={<Feature />}></Route>
-        <Route path="/results" element={<Results />}></Route>
+        <Route path="/results" element={<Results result="ukraine" />}></Route>
       </Routes>
     </BrowserRouter>
   </ChakraProvider>,
