@@ -4,6 +4,7 @@ import { extendTheme, ChakraProvider } from "@chakra-ui/react";
 //@chakra=ui/theme-tools
 //@chakra-ui/icons for icons
 //react-icons
+//next/image
 const colors = {
   brand: {
     900: "#1a365d",

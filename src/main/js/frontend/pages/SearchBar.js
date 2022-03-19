@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 import {
   FormErrorMessage,
@@ -14,14 +15,11 @@ function SearchBar() {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
+  const router = useRouter();
 
   function onSubmit(values) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
-    });
+    const qString = values.name.replace("s", "+");
+    router.push("/results/" + qString);
   }
 
   return (
