@@ -18,7 +18,7 @@ function SearchBar() {
   const router = useRouter();
 
   function onSubmit(values) {
-    const qString = values.name.replace("s", "+");
+    const qString = values.name;
     router.push("/results/" + qString);
   }
 
