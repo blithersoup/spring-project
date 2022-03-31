@@ -1,6 +1,7 @@
 import { Box, Stack, Heading, Text } from "@chakra-ui/react";
 import PageHeader from "../PageHeader";
 import { useRouter } from "next/router";
+import { useEffect, useState } from 'react';
 
 function Feature({ title, desc }) {
   return (
@@ -14,35 +15,37 @@ function Feature({ title, desc }) {
 function Results() {
   const router = useRouter();
   const { query } = router.query;
-  const url = "http://localhost:8080/news/search?query=helloworld"; //+ q
-  /*
-  let ret = (body) => (
-    <>
-      <PageHeader />
-      <Stack spacing={8}>
+  const url = "http://localhost:8080/news/search?query=" + query;
+  
+  let d = {
+    "articles": [
+        {"title": "",
+    "url": ""}
+    ]
+};
+
+ const [body, setBody] = useState(d);
+
+
+
+useEffect(async () => {
+    await fetch(url).then(response => response.json()).then((json) => { setBody(json) });
+   
+    //setTimeout(() => { setBody({"articles":[{"title": "loaded", "url": "fully"}]}) }, 2000);
+});
+
+let ret = (
+<>
+    <PageHeader />
+    <Stack spacing={8}>
         {body.articles.map((item) => (
-          <Feature title={item.title} desc={item.url} />
+        <Feature key={item} title={item.title} desc={item.url} />
         ))}
-      </Stack>
-    </>
-  );*/
+    </Stack>
+</>
+);
+return ret;
 
-  const response = fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    })
-    .catch((error) => console.log(error));
-
-  //let body = getJson();
-
-  //let options = { params: { query: result } };
-
-  console.log(response);
-
-  return <p>ok</p>;
 }
 
 export default Results;
