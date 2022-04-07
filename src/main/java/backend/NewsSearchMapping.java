@@ -20,7 +20,7 @@ public class NewsSearchMapping {
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
-    String apiKey = "ba26a597ebd64f5ab0b9deafec71996f";
+    String apiKey = "";
     HttpClient client = new ServerHttpClient().httpClient;
     
     @CrossOrigin(allowedHeaders= "Access-Control-Allow-Origin")
