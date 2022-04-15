@@ -27,7 +27,7 @@ public class NewsResult {
         this.query = query;
     }
 
-    public JSONObject getSearchResponse(HttpClient httpClient) throws IOException, URISyntaxException {
+    public JSONObject getSearchResponse(HttpClient httpClient) throws IOException, URISyntaxException, ParseException {
         JSONObject searchResult = new JSONObject();
 
         URIBuilder uriBuilder = new URIBuilder("https://newsapi.org/v2/everything");
@@ -42,7 +42,16 @@ public class NewsResult {
 
         HttpGet httpGet = new HttpGet(uriBuilder.build());
 
-        return getJsonObject(httpClient, searchResult, httpGet);
+        JSONObject returned = getJsonObject(httpClient, searchResult, httpGet);
+        if (returned.containsValue("error")) {
+            JSONParser p = new JSONParser();
+            String jsonString = "{\"articles\":[{\"title\": \"Error\", \"url\": \"Out of requests\"}]}"; //+ returned.get("message") + "\"}]}";
+            return (JSONObject) p.parse(jsonString);
+        }
+        else {
+            return returned;
+        }
+
     }
 
     static JSONObject getJsonObject(HttpClient httpClient, JSONObject searchResult, HttpGet httpGet) throws IOException {
