@@ -1,7 +1,6 @@
 import { Flex, Spacer } from "@chakra-ui/react";
-import PageHeader from "./PageHeader";
-//import OldSearchBar from "./OldSearchBar";
-import SearchBar from "./SearchBar";
+import PageHeader from "../components/PageHeader";
+import SearchBar from "../components/SearchBar";
 
 function App() {
   return (

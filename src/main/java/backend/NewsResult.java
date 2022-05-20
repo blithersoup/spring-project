@@ -45,7 +45,7 @@ public class NewsResult {
         JSONObject returned = getJsonObject(httpClient, searchResult, httpGet);
         if (returned.containsValue("error")) {
             JSONParser p = new JSONParser();
-            String jsonString = "{\"articles\":[{\"title\": \"Error\", \"url\": \"Out of requests\"}]}"; //+ returned.get("message") + "\"}]}";
+            String jsonString = "{\"articles\":[{\"title\": \"Error\", \"url\": \"Out of requests\"}]}";
             return (JSONObject) p.parse(jsonString);
         }
         else {

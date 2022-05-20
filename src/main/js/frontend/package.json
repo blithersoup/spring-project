@@ -11,14 +11,10 @@
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
     "@chakra-ui/theme": "^1.14.0",
-<<<<<<< HEAD
     "buffer": "^6.0.3",
     "graceful-fs": "^4.2.9",
     "next": "12.1.0",
     "node-fetch": "^3.2.3",
-=======
-    "next": "^12.1.0",
->>>>>>> f6b56a9bee64acdb3f8069e17236456cc7bc3d0f
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.27.1",

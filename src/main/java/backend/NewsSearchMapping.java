@@ -10,15 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-<<<<<<< HEAD
 @CrossOrigin(origins = "localhost:3000")
-=======
->>>>>>> f6b56a9bee64acdb3f8069e17236456cc7bc3d0f
 @RestController
 public class NewsSearchMapping {
 
@@ -28,13 +24,8 @@ public class NewsSearchMapping {
     }
     String apiKey = "ba26a597ebd64f5ab0b9deafec71996f";
     HttpClient client = new ServerHttpClient().httpClient;
-<<<<<<< HEAD
 
 
-=======
-    
-    @CrossOrigin(allowedHeaders= "Access-Control-Allow-Origin")
->>>>>>> f6b56a9bee64acdb3f8069e17236456cc7bc3d0f
     @GetMapping("/news/search")
     public JSONObject NewsMapping(@RequestParam(value = "query") String query) throws IOException, URISyntaxException, ParseException {
         NewsResult search = new NewsResult(query, apiKey);
