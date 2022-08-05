@@ -16,7 +16,7 @@ public class TwitterSearchMapping {
     String BearerToken = System.getenv("TWITTER_BEARER");
     HttpClient client = new ServerHttpClient().httpClient;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = TwitterSearch.origin)
     @GetMapping("/twitter/search")
     public JSONObject TwitterSearch(@RequestParam(value = "query", defaultValue = "default") String query) throws IOException, URISyntaxException {
         TwitterSearch search = new TwitterSearch(query, BearerToken);

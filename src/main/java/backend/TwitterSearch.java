@@ -19,11 +19,12 @@ public class TwitterSearch {
     private String searchString = "";
     private final String bearerToken;
     private String[] searchTerms;
+    public static final String origin = "localhost:3000";
 
     public TwitterSearch(String searchString, String bearerToken) {
         this.searchTerms = searchString.split("\\s+");
         this.bearerToken = bearerToken;
-        StringBuilder searchStringBuilder = new StringBuilder();
+        StringBuilder searchStringBuilder = new StringBuilder("lang:en ");
         for (String searchTerm : searchTerms) {
             if (isUpperCase(searchTerm.charAt(0)) && !searchTerm.equals("The")) searchStringBuilder.append(searchTerm).append(" OR ");
         }
