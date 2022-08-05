@@ -22,7 +22,7 @@ public class NewsSearchMapping {
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
-    String apiKey = "ba26a597ebd64f5ab0b9deafec71996f";
+    String apiKey = System.getenv("NEWS_BEARER");
     HttpClient client = new ServerHttpClient().httpClient;
 
 

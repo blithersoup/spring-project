@@ -1,5 +1,5 @@
 import { Box, Spacer, Flex } from "@chakra-ui/react";
-import PageHeader from "./PageHeader";
+import PageHeader from "../components/PageHeader";
 
 function About() {
   return (

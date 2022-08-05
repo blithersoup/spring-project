@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 @RestController
 public class TwitterSearchMapping {
 
-    String BearerToken = "";
+    String BearerToken = System.getenv("TWITTER_BEARER");
     HttpClient client = new ServerHttpClient().httpClient;
 
     @CrossOrigin(origins = "http://localhost:3000")

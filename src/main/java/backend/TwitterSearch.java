@@ -23,10 +23,11 @@ public class TwitterSearch {
     public TwitterSearch(String searchString, String bearerToken) {
         this.searchTerms = searchString.split("\\s+");
         this.bearerToken = bearerToken;
-        StringBuilder searchStringBuilder = new StringBuilder(searchString);
+        StringBuilder searchStringBuilder = new StringBuilder();
         for (String searchTerm : searchTerms) {
-            if (isUpperCase(searchTerm.charAt(0))) searchStringBuilder.append(searchTerm).append(" OR ");
+            if (isUpperCase(searchTerm.charAt(0)) && !searchTerm.equals("The")) searchStringBuilder.append(searchTerm).append(" OR ");
         }
+        searchStringBuilder.append("mountain");
         searchString = searchStringBuilder.toString();
         if (searchString.length() > 510) {
             searchString = searchString.substring(0,510);
