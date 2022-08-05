@@ -2,12 +2,14 @@ import { Box, Stack, Heading, Text, Spacer } from "@chakra-ui/react";
 import PageHeader from "../../components/PageHeader";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import Sentiment from 'sentiment'
 
 function BottomBox({ query }) {
   const [tweets, setTweets] = useState([]);
-  const [sentiment, setSentiment] = useState(0);
+  const [sentimentVal, setSentimentVal] = useState(0);
   const endpoint = process.env.NEXT_PUBLIC_API;
   const url = `${endpoint}/twitter/search?query=${query}`;
+  const sent = new Sentiment()
   
   useEffect(() => {
     (
@@ -15,23 +17,31 @@ function BottomBox({ query }) {
         await fetch(url)
         .then((response) => response.json())
         .then((json) => {
-          setTweets(json);
+          setTweets(json.data);
         });
       }
     )()
   })
 
   useEffect(() => {
-    const newSentiment = 0
-    setSentiment(newSentiment)
-  })
+    let newSentiment = 0
+    let i = 0
+    tweets ?
+    tweets.forEach(({ text }) => {
+      i += 1
+      const { comparative: score } = sent.analyze(text)
+      newSentiment += score
+      setSentimentVal(newSentiment / i)
+    })
+    : null
+  }, [tweets])
 
   return (
     <Stack direction="row">
       <Spacer />
       <Text>Show more</Text>
       <div>
-        {sentiment}
+        {sentimentVal}
       </div>
       <Spacer />
     </Stack>
