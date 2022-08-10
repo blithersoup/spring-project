@@ -34,7 +34,7 @@ function BottomBox({ query }) {
       setSentimentVal(newSentiment / i)
     })
     : null
-  }, [tweets])
+  }, [tweets, sent])
 
   return (
     <Stack direction="row">
