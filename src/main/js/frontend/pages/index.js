@@ -1,6 +1,7 @@
 import React from "react";
-import App from "./App";
-import { extendTheme, ChakraProvider } from "@chakra-ui/react";
+import { extendTheme, ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
+import PageHeader from "../components/PageHeader";
+import SearchBar from "../components/SearchBar";
 
 const colors = {
   brand: {
@@ -13,7 +14,12 @@ const theme = extendTheme({ colors });
 export default function Home() {
   return (
     <ChakraProvider theme={theme}>
-      <App />
+      <Flex direction="column" height="100vh">
+        <PageHeader />
+        <Spacer />
+        <SearchBar />
+        <Spacer />
+      </Flex>
     </ChakraProvider>
   );
 }
