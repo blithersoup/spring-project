@@ -18,12 +18,18 @@ import java.net.URISyntaxException;
 @RestController
 public class NewsSearchMapping {
 
+    private final HttpClient client;
+
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+    RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
+
     String apiKey = System.getenv("NEWS_BEARER");
-    HttpClient client = new ServerHttpClient().httpClient;
+
+    public NewsSearchMapping(HttpClient client) {
+        this.client = client;
+    }
 
 
     @GetMapping("/news/search")
